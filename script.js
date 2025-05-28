@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 요소가 아직 애니메이션되지 않았고, 뷰포트 70% 지점에 들어왔을 때
             // 그리고 요소가 화면 안에 존재할 때
-            if (!element.classList.contains('show') && rect.top < window.innerHeight * 0.7 && rect.bottom > 0) {
+            if (!element.classList.contains('show') && rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
                 // ★ 애니메이션 딜레이 계산 및 적용 ★
                 // 각 요소마다 0.1초씩 딜레이를 줍니다. (index 0: 0s, index 1: 0.1s, index 2: 0.2s...)
                 const delay = index * 0.1; // 이 0.1을 조절하여 딜레이 간격을 변경할 수 있습니다.
