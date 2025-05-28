@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedElements.forEach((element, index) => { // ★ index 파라미터 추가 ★
             const rect = element.getBoundingClientRect();
 
-            // 요소가 아직 애니메이션되지 않았고, 뷰포트 70% 지점에 들어왔을 때
             // 그리고 요소가 화면 안에 존재할 때
             if (!element.classList.contains('show') && rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
                 // ★ 애니메이션 딜레이 계산 및 적용 ★
