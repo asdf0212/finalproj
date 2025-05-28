@@ -6,7 +6,11 @@ html, body, p, section, div, h1, h2, h3, h4, h5, img, span{
     margin: 0;
     padding: 0;
     font-family: 'Pretendard Variable', sans-serif;
-    font-weight: 900;
+    
+}
+
+html, body, p, section, div, h1, h2, h3, h4, h5, img{
+    font-weight:900;
 }
 
 body{
@@ -22,7 +26,7 @@ html{
 
 /*변형*/
 .rotate-90{
-    transform: rotate(90deg);
+    transform: rotate(90deg) translate(0%, 0%);
 
 }
 
@@ -70,8 +74,20 @@ p{
 }
 
 h1{
+    position: absolute;
     font-size: 128px;
     font-weight: 900;
+    white-space: nowrap;
+    overflow: visible;
+    z-index: 100;
+}
+
+h2{
+    position: absolute;
+    left: -70px;
+    line-height: 90%;
+    font-size: 64px;
+    font-weight: 700;
 }
 
 h3{
@@ -211,10 +227,13 @@ footer{
 }
   
 .item {
+    position: relative;
+    
     text-align: left;
     font-size: 16px;
     font-weight: 500;
-    
+
+    width: 265px;
 
 }
   
@@ -232,14 +251,15 @@ video{
     border-radius: 500px;
     width: 64px; height: 64px;
     background-color: #000000;
-    left: 480px;
+
+    left: -73px;
 }
 
 .line{
     position: absolute;
     height: 346px; width: 10px;
     background-color: #000000;
-    left: 504px;
+    left: -77px;
 }
 
 /*애니메이션*/
