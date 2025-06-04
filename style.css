@@ -47,7 +47,6 @@ html{
 /*텍스트*/
 p{
     word-break: keep-all;
-    text-align: justify;
 }
 
 .title1{
@@ -240,12 +239,19 @@ footer{
 }
   
 /*이미지 & 비디오*/
-video{
+.logo{
     position: absolute;
     top: 35%;
     left: 50%;
     height: 200px; width: 400px;
     transform: translate(-50%, -50%);
+}
+
+.main-intro-video{
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: 128px;
 }
 
 .dot{
