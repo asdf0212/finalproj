@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = element.getBoundingClientRect();
 
             // 그리고 요소가 화면 안에 존재할 때
-            if (!element.classList.contains('show') && rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+            if (!element.classList.contains('show') && rect.top < window.innerHeight * 1.0 && rect.bottom > 0) {
                 // ★ 애니메이션 딜레이 계산 및 적용 ★
                 // 각 요소마다 0.1초씩 딜레이를 줍니다. (index 0: 0s, index 1: 0.1s, index 2: 0.2s...)
                 const delay = index * 0.1; // 이 0.1을 조절하여 딜레이 간격을 변경할 수 있습니다.
