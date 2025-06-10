@@ -204,9 +204,14 @@ header, section footer{
     overflow-y: hidden;
 }
 
-section{
+.section{
     margin-top: 256px;
     margin-bottom: 256px;
+}
+
+.video-section{
+    height: 6000px;
+    position: relative;
 }
 footer{
     height: 400px;
@@ -268,6 +273,15 @@ footer{
     height: 346px; width: 10px;
     background-color: #000000;
     left: -77px;
+}
+
+video{
+    width: 100vw;
+    height: auto;
+    display: block;
+    position: sticky;
+    top: 200px
+
 }
 
 /*애니메이션*/

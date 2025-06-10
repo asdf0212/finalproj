@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 탭 활성화 로직
+    // ------------------ 1. 탭 활성화 로직 ------------------
     const navTabs = document.querySelectorAll('.nav-tab');
 
     navTabs.forEach(tab => {
@@ -22,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let foundMatch = false;
 
         navTabs.forEach(tab => {
-            // tab 자체가 <a> 태그일 경우 직접 href 사용
-            // 만약 .nav-tab이 <li>이고 그 안에 <a>가 있다면, tab.querySelector('a')?.href를 사용해야 합니다.
-            // 현재 코드에서는 .nav-tab이 <a>라고 가정하고 있습니다.
             const linkPathname = new URL(tab.href, window.location.origin).pathname;
 
             const normalizedCurrentPath = (
@@ -50,35 +47,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 페이지 로드 시 현재 경로에 맞게 활성 탭 설정
     setActiveTabFromPath();
 
-    // 2. 스크롤 애니메이션 로직
+    // ------------------ 2. 스크롤 애니메이션 로직 ------------------
     const animatedElements = document.querySelectorAll('.fade-in, .fade-up, .fade-up-left, .fade-up-right');
 
     function checkAnimationVisibility() {
-        animatedElements.forEach((element, index) => { // ★ index 파라미터 추가 ★
+        animatedElements.forEach((element, index) => {
             const rect = element.getBoundingClientRect();
-
-            // 그리고 요소가 화면 안에 존재할 때
-            if (!element.classList.contains('show') && rect.top < window.innerHeight * 1.0 && rect.bottom > 0) {
-                // ★ 애니메이션 딜레이 계산 및 적용 ★
-                // 각 요소마다 0.1초씩 딜레이를 줍니다. (index 0: 0s, index 1: 0.1s, index 2: 0.2s...)
-                const delay = index * 0.1; // 이 0.1을 조절하여 딜레이 간격을 변경할 수 있습니다.
+            if (!element.classList.contains('show') && rect.top < window.innerHeight && rect.bottom > 0) {
+                const delay = index * 0.1;
                 element.style.transitionDelay = `${delay}s`;
-
                 element.classList.add('show');
             }
         });
     }
 
-    // 초기 확인 (DOM 완전히 그려진 후 실행)
-    // requestAnimationFrame을 사용하여 초기 렌더링 후 실행되도록 보장
     requestAnimationFrame(() => {
         checkAnimationVisibility();
     });
 
-    // 스크롤 및 리사이즈 시 재확인
     window.addEventListener('scroll', checkAnimationVisibility);
     window.addEventListener('resize', checkAnimationVisibility);
+
+ // ------------------ 3. 스크롤 연동 비디오 재생 ------------------
+const video = document.getElementById("sequence-video");
+if (!video) return;
+
+// 현재 페이지 이름 얻기 (예: dot.html → dot)
+const path = window.location.pathname;
+const pageName = path.substring(path.lastIndexOf('/') + 1).replace('.html', '');
+
+// 비디오 파일 이름 (index.html과 같은 위치에 있음)
+const videoFileName = `video_${pageName}.mp4`;
+video.src = videoFileName;
+
+video.pause(); // 자동재생 방지
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const maxScrollTop = document.body.scrollHeight - window.innerHeight;
+    const scrollFraction = scrollTop / maxScrollTop;
+
+    // 비디오 duration이 아직 로드되지 않은 경우 대비
+    const duration = video.duration || 1;
+
+    // 재생 위치 (초) 계산
+    const time = duration * scrollFraction;
+
+    // 비디오 현재시간 설정
+    video.currentTime = time;
+});
+
 });
